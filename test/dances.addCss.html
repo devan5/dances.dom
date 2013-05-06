@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>dances.addCss</title>
+
+	<script type="text/javascript" src="../../dances.amd/dances.amd.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="../../_helper/jasmine/lib/1.3.1/jasmine.css" media="all">
+	<script type="text/javascript" src="../../_helper/jasmine/lib/1.3.1/jasmine.js"></script>
+	<script type="text/javascript" src="../../_helper/jasmine/lib/1.3.1/jasmine-html.js"></script>
+
+	<script type="text/javascript">
+		(function(){
+			var jasmineEnv = jasmine.getEnv();
+			jasmineEnv.updateInterval = 1000;
+
+			var htmlReporter = new jasmine.HtmlReporter();
+//			var htmlReporter = new jasmine.TrivialReporter();
+
+			jasmineEnv.addReporter(htmlReporter);
+
+			jasmineEnv.specFilter = function(spec){
+				return htmlReporter.specFilter(spec);
+			};
+
+			var currentWindowOnload = window.onload;
+
+/*
+			window.onload = function(){
+				if(currentWindowOnload){
+					currentWindowOnload();
+				}
+				execJasmine();
+			};
+*/
+
+			window.execJasmine = function(){
+				jasmineEnv.execute();
+			};
+
+		})();
+	</script>
+
+</head>
+<body>
+	<div id="demo">
+		hey ! dances.dom
+	</div>
+	<script type="text/javascript">
+		define.amd.dancesDom = true;
+		dances
+			.require(["../dances.dom"], function(d){
+
+				var _ = d.addCss;
+
+				var _ss = "#demo{font-size:22px;color:#f00}";
+				_(_ss);
+				_("#demo{background:#ccc}");
+				_("#demo{padding: 5px}");
+
+				describe("dances.addCss", function(){
+					it("", function(){
+
+					});
+				});
+
+				execJasmine();
+			})
+		;
+	</script>
+</body>
+</html>
