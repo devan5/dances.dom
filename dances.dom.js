@@ -266,13 +266,15 @@ _______*/
 			archive = doc.createElement("div");
 			archive.innerHTML = sHTML;
 
+			expect = [];
 			if(archive.childNodes.length){
 				Els = archive.childNodes;
-				expect = [];
 				while(item = Els[0]){
 					expect.push(archive.removeChild(item));
 				}
 			}
+
+			1 ===expect.length && (expect = expect[0]);
 
 			// ladder gc
 			args =
@@ -284,6 +286,43 @@ _______*/
 
 			return expect;
 		};
+
+	})(dances);
+
+	// dances.getViewSize
+	dances && (function(exports){
+		var
+			fView,
+			oView = {},
+			doc
+		;
+
+		fView = function(w){
+
+			try{
+				doc = (w && top === win.top) ?
+					w.document :
+					top.document
+				;
+
+			}catch(e){ doc = document; }
+
+			if("CSS1Compat" === doc.compatMode){
+				oView.width = doc.documentElement.clientWidth;
+				oView.height = doc.documentElement.clientHeight;
+
+			}else{
+				oView.width = doc.body.clientWidth;
+				oView.height = doc.body.clientHeight;
+			}
+
+			// gc
+			doc = null;
+
+			return oView;
+		};
+
+		exports.getViewSize = fView;
 
 	})(dances);
 
