@@ -1,0 +1,27 @@
+{
+
+	"default": [
+		"dances.dom.start.js",
+
+		"dances.uAgent.js",
+
+		"dances.ss.js",
+		"dances.addCss.js",
+
+		"dances.El.js",
+
+		"dances.getViewSize.js",
+
+		"dances.dom.end.js"
+
+	],
+
+	"mdo": [
+		"dances.mdo.Hdr.js",
+
+		"dances.contains.js",
+		"dances.offset.js",
+
+		"dances.mdo.Ftr.js"
+	]
+}

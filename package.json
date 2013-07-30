@@ -1,0 +1,22 @@
+{
+  "name": "dances.dom",
+  "version": "2.0.0",
+  "description": "",
+  "main": "dances.dom.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": "",
+  "author": "",
+  "license": "MIT",
+  "gitHead": "0432ab6e5b8c160bb9606f2d37cfd988d81490cd",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-uglify": "~0.2.2"
+  }
+}
