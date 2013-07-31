@@ -52,10 +52,12 @@
         })();
     </script>
 
-	<script type="text/javascript" src="dist/dances.mdo.js"></script>
+	<!--<script type="text/javascript" src="dist/dances.mdo.js"></script>-->
+	<script type="text/javascript" src="dist/dances.dom.js"></script>
 
     <!-- include spec files here... -->
     <script type="text/javascript" src="spec/dances.El_spec.js"></script>
+    <script type="text/javascript" src="spec/dances.contains_spec.js"></script>
 
     <!-- 执行结果 -->
     <script type="text/javascript">
@@ -88,12 +90,14 @@
         })();
     </script>
 
-	<script type="text/javascript">
-		$log(new DOM());
-		$log( DOM());
-	</script>
-
 </head>
 <body>
+
+	<script type="text/javascript">
+		$log(DOM());
+		(function(){
+			new DOM(document.body).contains(document.body.firstChild);
+		})();
+	</script>
 </body>
 </html>
