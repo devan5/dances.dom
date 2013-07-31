@@ -1,7 +1,9 @@
 module.exports = function(grunt){
 	var
         onfDOM,
-		onfMDO
+		onfMDO,
+
+		buildJSON
 	;
 
 	onfDOM = {
@@ -16,9 +18,12 @@ module.exports = function(grunt){
 		destPath: "dist/"
 	};
 
+	buildJSON = grunt.file.readJSON("build.json");
+
+	buildJSON.default.splice(buildJSON.default.length - 1, 0, "_" + onfMDO.name + ".js");
+
 	grunt.initConfig({
 		pkg      : grunt.file.readJSON("package.json"),
-		buildData: grunt.file.readJSON("build.json"),
 
 		concat   : {
 			generic: {
@@ -29,9 +34,18 @@ module.exports = function(grunt){
 				},
 				expand : true,
 				cwd    : onfDOM.srcPath,
-				src    : "<%= buildData.default %>",
+				src    : buildJSON.default,
 				rename : function(){
 					return onfDOM.destPath + onfDOM.name + ".js";
+				}
+			},
+
+			mdoForGeneric: {
+				expand : true,
+				cwd    : onfMDO.srcPath,
+				src    : buildJSON.mdo_For_dom,
+				rename : function(){
+					return onfDOM.srcPath + "_" + onfMDO.name + ".js";
 				}
 			},
 
@@ -43,7 +57,7 @@ module.exports = function(grunt){
 				},
 				expand : true,
 				cwd    : onfMDO.srcPath,
-				src    : "<%= buildData.mdo %>",
+				src    : buildJSON.mdo,
 				rename : function(){
 					return onfMDO.destPath + onfMDO.name + ".js";
 				}
@@ -79,9 +93,16 @@ module.exports = function(grunt){
 		},
 
 		clean: {
-			def: {
-				src: "dist/"
+			generic      : {
+				src: onfDOM.destPath + onfDOM.name + "*.js"
+			},
+			mdo          : {
+				src: onfDOM.destPath + onfMDO.name + "*.js"
+			},
+			afterMdoForGeneric: {
+				src: onfDOM.srcPath + "_" + onfMDO.name + ".js"
 			}
+
 		}
 
 	});
@@ -91,7 +112,11 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks("grunt-contrib-uglify");
 
 	grunt.registerTask("default", []);
-	grunt.registerTask("build", ["clean:def", "concat", "uglify"]);
-	grunt.registerTask("build-dom", ["clean:def", "concat:generic", "uglify:generic"]);
+
+	var arrDomBuild = ["clean", "concat:mdoForGeneric", "concat:mdo", "concat:generic", "uglify", "clean:afterMdoForGeneric"];
+	grunt.registerTask("build", arrDomBuild);
+	grunt.registerTask("build-dom", arrDomBuild);
+
+	grunt.registerTask("build-mdo", ["clean:mdo", "concat:mdo", "uglify:mdo"]);
 
 };

@@ -1,8 +1,12 @@
 /**
+ * @name dances.offset
  * @overview 计算出子元素(包括隐藏子元素)相对父元素的坐标
  * @desc warning: contextEl 在ie7及之前版本 若没有触发 hasLayout 则计算的误差会很大
  * @require dances.contain
  * @require dances.ss
+ *
+ * @firstDate 2012.05.07
+ * @lastDate 2013.07.31
  */
 (function(exports){
 

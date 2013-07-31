@@ -1,3 +1,6 @@
+/**
+ * @name dances.El
+ */
 (function(exports){
 	var
 		rTag = /<[^\/<>]+>.+<[^<>]+>|<[^<>\s]+\s*\/?\s*>/

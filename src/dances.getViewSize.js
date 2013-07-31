@@ -1,4 +1,7 @@
-(function(){
+/**
+ * @name dances.getViewSize
+ */
+(function(exports){
 
 	var
 		fView

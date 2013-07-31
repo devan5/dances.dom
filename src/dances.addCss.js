@@ -1,3 +1,6 @@
+/**
+ * @name dances.addCss
+ */
 (function(exports){
 	var
 		addCss

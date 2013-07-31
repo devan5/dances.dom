@@ -1,3 +1,6 @@
+/**
+ * @name dances.uAgent
+ */
 (function(exports){
 
 	var
