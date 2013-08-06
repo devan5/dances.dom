@@ -11,6 +11,7 @@
 		"dances.El.js",
 
 		"dances.getViewSize.js",
+		"dances.getPageSize.js",
 
 		"dances.dom.Ftr.js"
 
